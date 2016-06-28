@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:circleci.yml">
+      location = "group:/Users/cerberillo/Desktop/ios-workflow/circle.yml">
    </FileRef>
    <FileRef
       location = "group:Gemfile">
