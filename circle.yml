@@ -10,11 +10,12 @@ test:
             -workspace ios-workflow.xcworkspace
             -scheme library
             -sdk iphonesimulator
-            clean test | tee $CIRCLE_ARTIFACTS/build.log | xcpretty -c -r junit --output $CIRCLE_TEST_REPORTS/report.xml -r html --output $CIRCLE_TEST_REPORTS/report.html -r json-compilation-database --output $CIRCLE_TEST_REPORTS/report.json
+            clean test
+            | tee $CIRCLE_ARTIFACTS/xcodebuild.log
+            | xcpretty
+                -c
+                -r junit --output $CIRCLE_TEST_REPORTS/report.xml
+                -r html --output $CIRCLE_TEST_REPORTS/report.html
+                -r json-compilation-database --output $CIRCLE_TEST_REPORTS/report.json
     post:
         - bundle exec slather
-#---------------------- TODO:
-#   master:
-#        branch: master
-#        commands:
-#            - Create library, tag and release on GitHub

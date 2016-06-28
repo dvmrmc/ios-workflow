@@ -3,3 +3,5 @@ ci_service: circleci
 workspace: ios-workflow.xcworkspace
 scheme: library
 xcodeproj: library/library.xcodeproj
+ignore:
+  - dependencies/*
