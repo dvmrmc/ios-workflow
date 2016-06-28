@@ -5,3 +5,5 @@ scheme: library
 xcodeproj: library/library.xcodeproj
 ignore:
   - dependencies/*
+  - library/library.test/*
+  - ../*
