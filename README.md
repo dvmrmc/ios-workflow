@@ -13,3 +13,5 @@ Even being a mobile project, this contains a minimum set up of Services that we 
 * Test Coverage: This will ensure that your tests are covering a minimum amount of your code so It will also confirm against your PR's if you are destroying your tests or if you are improving them.
 
 For this specific sample, I'm using [`CircleCI`](http://www.circleci.com) and [`Coveralls`](http://www.coveralls.io)
+
+In order to upload test results from CircleCI to Coveralls I'm using [`Slather`](https://github.com/SlatherOrg/slather) for which you need to set up an enviroment variable in your CI server called `COVERAGE_ACCESS_TOKEN` with the token given in Coveralls
