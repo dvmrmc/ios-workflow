@@ -1,5 +1,7 @@
 # ios-workflow
 
+[![CircleCI](https://circleci.com/gh/cerberillo/ios-workflow.svg?style=shield)](https://circleci.com/gh/cerberillo/ios-workflow) [![Coverage Status](https://coveralls.io/repos/github/cerberillo/ios-workflow/badge.svg)](https://coveralls.io/github/cerberillo/ios-workflow)
+
 Sample project with full professional workflow with CI Server, Coverage reports and automate deployment
 
 This project conforms what I consider the minimum set up for an open source project, so it shows to the integrating user what's the code quality of the repo that they are integrating.
