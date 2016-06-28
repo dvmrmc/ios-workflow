@@ -1,0 +1,30 @@
+machine:
+    timezone:
+        Europe/Berlin
+    xcode:
+        version: "7.3"
+
+test:
+    override:
+        - xcodebuild
+            -workspace ios-workflow.xcworkspace
+            -scheme library
+            -sdk iphonesimulator
+            clean test
+            | tee $CIRCLE_ARTIFACTS/xcodebuild.log
+            | xcpretty
+                -c
+                -r junit --output $CIRCLE_TEST_REPORTS/report.xml
+                -r html --output $CIRCLE_TEST_REPORTS/report.html
+                -r json-compilation-database --output $CIRCLE_TEST_REPORTS/report.json
+    post:
+        - bundle exec slather coverage
+            --simple-output
+            --circleci
+            --coveralls
+            --workspace ios-workflow.xcworkspace
+            --scheme library
+            --ignore "dependencies/*"
+            --ignore "library/library.test/*"
+            --ignore "../*"
+            library/library.xcodeproj
