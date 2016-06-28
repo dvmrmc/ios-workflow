@@ -1,0 +1,5 @@
+coverage_service: coveralls
+ci_service: circleci
+workspace: ios-workflow.xcworkspace
+xcodeproj: library/library.xcodeproj
+scheme: library
