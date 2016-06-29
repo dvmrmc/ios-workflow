@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4A414601D2452ED00EC09C3 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A4145E1D2452ED00EC09C3 /* Fabric.framework */; };
+		B4A414631D2453C200EC09C3 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A4145F1D2452ED00EC09C3 /* Crashlytics.framework */; };
 		B4C5F9981D22C5E600AE70DC /* library.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4C5F9971D22C5E600AE70DC /* library.h */; };
 		B4C5F99A1D22C5E600AE70DC /* library.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C5F9991D22C5E600AE70DC /* library.m */; };
 		B4C5F9A71D22C63D00AE70DC /* library_test.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C5F9A61D22C63D00AE70DC /* library_test.m */; };
@@ -44,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B4A4145E1D2452ED00EC09C3 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		B4A4145F1D2452ED00EC09C3 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		B4C5F9941D22C5E500AE70DC /* liblibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4C5F9971D22C5E600AE70DC /* library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
 		B4C5F9991D22C5E600AE70DC /* library.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = library.m; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4A414601D2452ED00EC09C3 /* Fabric.framework in Frameworks */,
+				B4A414631D2453C200EC09C3 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +137,8 @@
 		B4C5F9B11D22C68000AE70DC /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				B4A4145E1D2452ED00EC09C3 /* Fabric.framework */,
+				B4A4145F1D2452ED00EC09C3 /* Crashlytics.framework */,
 				B4C5F9B21D22C68000AE70DC /* ochamcrest-5.4.0 */,
 				B4C5F9B41D22C68000AE70DC /* ocmockito-3.0.1 */,
 			);
@@ -212,6 +220,7 @@
 				B4C5F9B81D22C75C00AE70DC /* Sources */,
 				B4C5F9B91D22C75C00AE70DC /* Frameworks */,
 				B4C5F9BA1D22C75C00AE70DC /* Resources */,
+				B4A414621D24534B00EC09C3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -282,6 +291,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B4A414621D24534B00EC09C3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run $FABRIC_API_KEY $FABRIC_SECRET";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4C5F9901D22C5E500AE70DC /* Sources */ = {

@@ -6,18 +6,41 @@ machine:
 
 test:
     override:
+# BUILD
         - xcodebuild
             -workspace ios-workflow.xcworkspace
             -scheme library
             -sdk iphonesimulator
-            clean test
+            clean build
+            | tee $CIRCLE_ARTIFACTS/xcodebuild_build.log
+            | xcpretty
+                -c
+                -r json-compilation-database --output compile_commands.json
+# TEST
+        - xcodebuild
+            -workspace ios-workflow.xcworkspace
+            -scheme library
+            -sdk iphonesimulator
+            test
             | tee $CIRCLE_ARTIFACTS/xcodebuild_test.log
             | xcpretty
                 -c
                 -r junit --output $CIRCLE_TEST_REPORTS/junit.xml
                 -r html --output $CIRCLE_TEST_REPORTS/report.html
                 -r json-compilation-database --output $CIRCLE_ARTIFACTS/test_compilation_database.json
+# ARCHIVE
+        - xcodebuild
+            -workspace ios-workflow.xcworkspace
+            -scheme library
+            -sdk iphonesimulator
+            -archivePath $CIRCLE_ARTIFACTS/archive.xcarchive
+            archive
+            | tee $CIRCLE_ARTIFACTS/xcodebuild_archive.log
+            | xcpretty
+                -c
+                -r json-compilation-database --output $CIRCLE_ARTIFACTS/archive_compilation_database.json
     post:
+# UPLOAD COVERAGE REPORT
         - bundle exec slather coverage
             --simple-output
             --circleci
@@ -28,17 +51,17 @@ test:
             --ignore "library/library.test/*"
             --ignore "../*"
             library/library.xcodeproj
+# UPLOAD ARCHIVE
         - xcodebuild
-            -workspace ios-workflow.xcworkspace
-            -scheme library
-            -sdk iphonesimulator
-            clean build
-            | tee $CIRCLE_ARTIFACTS/xcodebuild_build.log
-            | xcpretty
-                -c
-                -r json-compilation-database --output compile_commands.json
+            -exportArchive
+            -archivePath $CIRCLE_ARTIFACTS/archive.xcarchive
+            -exportPath $CIRCLE_ARTIFACTS/archive.ipa
+            -exportFormat ipa
+        - if [[ ! -z $CI_PULL_REQUEST ]] ; then ./dependencies/Crashlytics.framework/submit $FABRIC_API_KEY $FABRIC_SECRET  -ipaPath $CIRCLE_ARTIFACTS/archive.ipa ; fi
+# GENERATE LINT
         - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type text -o $CIRCLE_ARTIFACTS/oclint.txt
         - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type html -o $CIRCLE_ARTIFACTS/oclint.html
         - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type xml -o $CIRCLE_ARTIFACTS/oclint.xml
         - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type json -o $CIRCLE_ARTIFACTS/oclint.json
         - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type pmd -o $CIRCLE_ARTIFACTS/oclint_pmd.xml
+        - if [[ ! -z $CI_PULL_REQUEST ]] ; then ./gradlew assembleDebug crashlyticsUploadDistributionDebug ; fi
