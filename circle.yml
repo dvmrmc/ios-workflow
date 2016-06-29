@@ -36,4 +36,4 @@ test:
             | xcpretty
                 -c
                 -r json-compilation-database --output compile_commands.json
-        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type html --output $CIRCLE_TEST_REPORTS/lint.html
+        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type html -o $CIRCLE_TEST_REPORTS/lint.html
