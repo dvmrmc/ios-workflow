@@ -37,8 +37,8 @@ test:
             | xcpretty
                 -c
                 -r json-compilation-database --output compile_commands.json
-        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type text -o $CIRCLE_ARTIFACTS/oclint/report.txt
-        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type html -o $CIRCLE_ARTIFACTS/oclint/report.html
-        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type xml -o $CIRCLE_ARTIFACTS/oclint/report.xml
-        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type json -o $CIRCLE_ARTIFACTS/oclint/report.json
-        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type pmd -o $CIRCLE_ARTIFACTS/oclint/report_pmd.xml
+        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type text -o $CIRCLE_TEST_REPORTS/oclint/report.txt
+        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type html -o $CIRCLE_TEST_REPORTS/oclint/report.html
+        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type xml -o $CIRCLE_TEST_REPORTS/oclint/report.xml
+        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type json -o $CIRCLE_TEST_REPORTS/oclint/report.json
+        - ./ci/oclint-0.10.3/bin/oclint-json-compilation-database -- -report-type pmd -o $CIRCLE_TEST_REPORTS/oclint/report_pmd.xml
