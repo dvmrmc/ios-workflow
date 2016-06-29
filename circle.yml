@@ -31,7 +31,7 @@ test:
 # ARCHIVE
         - xcodebuild
             -workspace ios-workflow.xcworkspace
-            -scheme library
+            -scheme library.demo
             -sdk iphoneos
             -archivePath $CIRCLE_ARTIFACTS/archive.xcarchive
             archive
