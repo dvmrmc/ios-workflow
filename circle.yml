@@ -32,7 +32,7 @@ test:
         - xcodebuild
             -workspace ios-workflow.xcworkspace
             -scheme library
-            -sdk iphonesimulator
+            -sdk iphoneos
             -archivePath $CIRCLE_ARTIFACTS/archive.xcarchive
             archive
             | tee $CIRCLE_ARTIFACTS/xcodebuild_archive.log
